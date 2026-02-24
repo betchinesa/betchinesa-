@@ -2,15 +2,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BetChinesa - Demo</title>
+<title>BetChinesa</title>
 
 <style>
+
 body{
 margin:0;
-background:#0d0d0d;
-font-family:Arial, sans-serif;
+font-family:Arial;
+background:#0b0b0b;
 color:white;
 }
+
+/* LOGIN */
+
+#loginPage{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.loginBox{
+background:#1a1a1a;
+padding:35px;
+border-radius:14px;
+width:320px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:gold;
+border:none;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* HEADER */
 
 header{
 background:#111;
@@ -22,92 +60,95 @@ align-items:center;
 
 .logo{
 color:gold;
+font-weight:bold;
 font-size:22px;
-font-weight:bold;
 }
 
-.saldo{
+/* JOGOS */
+
+.games{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+padding:30px;
+gap:25px;
+}
+
+.game{
 background:#1a1a1a;
-padding:8px 15px;
-border-radius:20px;
-color:gold;
-}
-
-.container{
-padding:20px;
-text-align:center;
-}
-
-.deposit-box{
-background:#1a1a1a;
-padding:20px;
+padding:15px;
 border-radius:12px;
-max-width:400px;
-margin:20px auto;
-}
-
-.values button{
-margin:5px;
-padding:10px 15px;
-border:none;
-border-radius:8px;
-background:#222;
-color:white;
+width:170px;
+text-align:center;
 cursor:pointer;
+transition:0.3s;
 }
 
-.values button:hover{
-background:gold;
-color:black;
+.game:hover{
+transform:scale(1.05);
 }
 
-.main-btn{
-margin-top:15px;
-padding:12px;
+.game img{
 width:100%;
-border:none;
 border-radius:8px;
-background:gold;
-color:black;
-font-weight:bold;
-cursor:pointer;
 }
 
-.demo{
-color:red;
-font-size:13px;
-margin-top:10px;
+/* OCULTO */
+
+.hidden{
+display:none;
 }
+
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo">🔥 BETCHINESA</div>
-<div class="saldo" id="saldo">R$ 0.00</div>
-</header>
+<!-- LOGIN -->
 
-<div class="container">
+<div id="loginPage">
 
-<div class="deposit-box">
-<h3>Adicionar Créditos (DEMO)</h3>
+<div class="loginBox">
+<h2>🔥 BetChinesa</h2>
 
-<div class="values">
-<button onclick="selecionar(32)">R$ 32</button>
-<button onclick="selecionar(50)">R$ 50</button>
-<button onclick="selecionar(100)">R$ 100</button>
-<button onclick="selecionar(200)">R$ 200</button>
-<button onclick="selecionar(500)">R$ 500</button>
+<input id="user" placeholder="Usuário">
+<input type="password" placeholder="Senha">
+
+<button onclick="login()">Entrar</button>
 </div>
 
-<button class="main-btn" onclick="depositar()">
-Confirmar Depósito
-</button>
+</div>
 
-<p class="demo">
-Modo Demonstrativo - Sem dinheiro real
-</p>
+<!-- MAIN -->
+
+<div id="mainPage" class="hidden">
+
+<header>
+<div class="logo">🔥 BetChinesa</div>
+
+<div>
+<button onclick="alert('Função visual de depósito')">
+Depósito
+</button>
+</div>
+</header>
+
+<div class="games">
+
+<div class="game" onclick="alert('Jogo fictício')">
+<img src="https://via.placeholder.com/150">
+<p>🎰 Slot Dragon</p>
+</div>
+
+<div class="game" onclick="alert('Jogo fictício')">
+<img src="https://via.placeholder.com/150">
+<p>💣 Crash Lucky</p>
+</div>
+
+<div class="game" onclick="alert('Jogo fictício')">
+<img src="https://via.placeholder.com/150">
+<p>🎲 Roleta VIP</p>
+</div>
 
 </div>
 
@@ -115,47 +156,17 @@ Modo Demonstrativo - Sem dinheiro real
 
 <script>
 
-let saldo = 0;
-let valorSelecionado = 0;
+function login(){
 
-function atualizarSaldo(){
-document.getElementById("saldo").innerText =
-"R$ " + saldo.toFixed(2);
-}
+let user = document.getElementById("user").value;
 
-function selecionar(valor){
-valorSelecionado = valor;
-}
-
-function depositar(){
-
-if(valorSelecionado < 32){
-alert("Depósito mínimo é R$ 32");
+if(user === ""){
+alert("Digite usuário");
 return;
 }
 
-animarSaldo(valorSelecionado);
-valorSelecionado = 0;
-}
-
-function animarSaldo(valor){
-
-let incremento = valor / 50;
-let contador = 0;
-
-let intervalo = setInterval(function(){
-
-saldo += incremento;
-contador += incremento;
-
-if(contador >= valor){
-saldo = Math.round(saldo);
-clearInterval(intervalo);
-}
-
-atualizarSaldo();
-
-}, 20);
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("mainPage").classList.remove("hidden");
 }
 
 </script>
