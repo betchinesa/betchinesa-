@@ -13,22 +13,30 @@ background:#0b0b0b;
 color:white;
 }
 
-/* LOGIN */
-
-#loginPage{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
+.hidden{
+display:none;
 }
 
-.loginBox{
+/* BOX */
+
+.box{
 background:#1a1a1a;
 padding:35px;
 border-radius:14px;
 width:320px;
 text-align:center;
 }
+
+/* CENTER SCREEN */
+
+.centerScreen{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* INPUT */
 
 input{
 width:100%;
@@ -38,6 +46,8 @@ border:none;
 border-radius:6px;
 }
 
+/* BUTTON */
+
 button{
 width:100%;
 padding:12px;
@@ -46,6 +56,7 @@ border:none;
 border-radius:6px;
 font-weight:bold;
 cursor:pointer;
+margin-top:10px;
 }
 
 /* HEADER */
@@ -55,13 +66,11 @@ background:#111;
 padding:15px;
 display:flex;
 justify-content:space-between;
-align-items:center;
 }
 
 .logo{
 color:gold;
 font-weight:bold;
-font-size:22px;
 }
 
 /* JOGOS */
@@ -81,22 +90,11 @@ border-radius:12px;
 width:170px;
 text-align:center;
 cursor:pointer;
-transition:0.3s;
-}
-
-.game:hover{
-transform:scale(1.05);
 }
 
 .game img{
 width:100%;
 border-radius:8px;
-}
-
-/* OCULTO */
-
-.hidden{
-display:none;
 }
 
 </style>
@@ -106,28 +104,54 @@ display:none;
 
 <!-- LOGIN -->
 
-<div id="loginPage">
+<div id="loginPage" class="centerScreen">
 
-<div class="loginBox">
+<div class="box">
+
 <h2>🔥 BetChinesa</h2>
 
-<input id="user" placeholder="Usuário">
-<input type="password" placeholder="Senha">
+<input id="loginUser" placeholder="Usuário">
+<input id="loginPass" type="password" placeholder="Senha">
 
 <button onclick="login()">Entrar</button>
-</div>
+
+<p onclick="showRegister()" style="cursor:pointer;color:gold;">
+Criar conta
+</p>
 
 </div>
 
-<!-- MAIN -->
+</div>
+
+<!-- CADASTRO -->
+
+<div id="registerPage" class="centerScreen hidden">
+
+<div class="box">
+
+<h2>Cadastro</h2>
+
+<input id="regUser" placeholder="Usuário">
+<input id="regPass" type="password" placeholder="Senha">
+
+<button onclick="register()">Cadastrar</button>
+
+<p onclick="showLogin()" style="cursor:pointer;color:gold;">
+Já tenho conta
+</p>
+
+</div>
+
+</div>
+
+<!-- HOME -->
 
 <div id="mainPage" class="hidden">
 
 <header>
 <div class="logo">🔥 BetChinesa</div>
-
 <div>
-<button onclick="alert('Função visual de depósito')">
+<button onclick="alert('Depósito visual')">
 Depósito
 </button>
 </div>
@@ -135,17 +159,17 @@ Depósito
 
 <div class="games">
 
-<div class="game" onclick="alert('Jogo fictício')">
+<div class="game">
 <img src="https://via.placeholder.com/150">
 <p>🎰 Slot Dragon</p>
 </div>
 
-<div class="game" onclick="alert('Jogo fictício')">
+<div class="game">
 <img src="https://via.placeholder.com/150">
 <p>💣 Crash Lucky</p>
 </div>
 
-<div class="game" onclick="alert('Jogo fictício')">
+<div class="game">
 <img src="https://via.placeholder.com/150">
 <p>🎲 Roleta VIP</p>
 </div>
@@ -158,15 +182,43 @@ Depósito
 
 function login(){
 
-let user = document.getElementById("user").value;
+let user = document.getElementById("loginUser").value;
+let pass = document.getElementById("loginPass").value;
 
-if(user === ""){
-alert("Digite usuário");
+if(user === "" || pass === ""){
+alert("Preencha os campos");
 return;
 }
 
 document.getElementById("loginPage").classList.add("hidden");
 document.getElementById("mainPage").classList.remove("hidden");
+
+}
+
+function register(){
+
+let user = document.getElementById("regUser").value;
+let pass = document.getElementById("regPass").value;
+
+if(user === "" || pass === ""){
+alert("Preencha os campos");
+return;
+}
+
+alert("Conta criada (demo)");
+
+showLogin();
+
+}
+
+function showRegister(){
+document.getElementById("loginPage").classList.add("hidden");
+document.getElementById("registerPage").classList.remove("hidden");
+}
+
+function showLogin(){
+document.getElementById("registerPage").classList.add("hidden");
+document.getElementById("loginPage").classList.remove("hidden");
 }
 
 </script>
