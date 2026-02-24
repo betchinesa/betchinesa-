@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <title>BetChinesa</title>
@@ -13,8 +13,13 @@ background:#0b0b0b;
 color:white;
 }
 
-.hidden{
-display:none;
+/* CENTRALIZAR TELA */
+
+.center{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 /* BOX */
@@ -27,15 +32,6 @@ width:320px;
 text-align:center;
 }
 
-/* CENTER SCREEN */
-
-.centerScreen{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
 /* INPUT */
 
 input{
@@ -46,7 +42,7 @@ border:none;
 border-radius:6px;
 }
 
-/* BUTTON */
+/* BOTÃO */
 
 button{
 width:100%;
@@ -59,6 +55,12 @@ cursor:pointer;
 margin-top:10px;
 }
 
+/* OCULTAR */
+
+.hidden{
+display:none;
+}
+
 /* HEADER */
 
 header{
@@ -66,6 +68,7 @@ background:#111;
 padding:15px;
 display:flex;
 justify-content:space-between;
+align-items:center;
 }
 
 .logo{
@@ -104,7 +107,7 @@ border-radius:8px;
 
 <!-- LOGIN -->
 
-<div id="loginPage" class="centerScreen">
+<div id="loginPage" class="center">
 
 <div class="box">
 
@@ -120,12 +123,11 @@ Criar conta
 </p>
 
 </div>
-
 </div>
 
 <!-- CADASTRO -->
 
-<div id="registerPage" class="centerScreen hidden">
+<div id="registerPage" class="center hidden">
 
 <div class="box">
 
@@ -141,7 +143,6 @@ Já tenho conta
 </p>
 
 </div>
-
 </div>
 
 <!-- HOME -->
@@ -149,27 +150,30 @@ Já tenho conta
 <div id="mainPage" class="hidden">
 
 <header>
+
 <div class="logo">🔥 BetChinesa</div>
+
 <div>
 <button onclick="alert('Depósito visual')">
 Depósito
 </button>
 </div>
+
 </header>
 
 <div class="games">
 
-<div class="game">
+<div class="game" onclick="alert('Jogo fictício')">
 <img src="https://via.placeholder.com/150">
 <p>🎰 Slot Dragon</p>
 </div>
 
-<div class="game">
+<div class="game" onclick="alert('Jogo fictício')">
 <img src="https://via.placeholder.com/150">
 <p>💣 Crash Lucky</p>
 </div>
 
-<div class="game">
+<div class="game" onclick="alert('Jogo fictício')">
 <img src="https://via.placeholder.com/150">
 <p>🎲 Roleta VIP</p>
 </div>
@@ -180,20 +184,23 @@ Depósito
 
 <script>
 
+/* LOGIN */
+
 function login(){
 
 let user = document.getElementById("loginUser").value;
 let pass = document.getElementById("loginPass").value;
 
 if(user === "" || pass === ""){
-alert("Preencha os campos");
+alert("Preencha usuário e senha");
 return;
 }
 
 document.getElementById("loginPage").classList.add("hidden");
 document.getElementById("mainPage").classList.remove("hidden");
-
 }
+
+/* CADASTRO */
 
 function register(){
 
@@ -208,8 +215,9 @@ return;
 alert("Conta criada (demo)");
 
 showLogin();
-
 }
+
+/* TELA */
 
 function showRegister(){
 document.getElementById("loginPage").classList.add("hidden");
